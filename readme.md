@@ -1,0 +1,1 @@
+curl -X POST -H "Content-Type: application/json" -d '{"inputVideoPath": "./test.mp4", "outputVideoPath": "./outputVideo.mp4"}' http://localhost:3000/process-video
