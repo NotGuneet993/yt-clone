@@ -9,8 +9,8 @@ app.post("/process-video", async (req, res) => {
     let data;
 
     try {
-        const messgage = Buffer.from(req.body.message.data, 'base64').toString('utf8');
-        data = JSON.parse(messgage);
+        const message = Buffer.from(req.body.message.data, 'base64').toString('utf8');
+        data = JSON.parse(message);
         if (!data.name) {
             throw new Error("Invalid message payload received.");
         }
@@ -28,7 +28,7 @@ app.post("/process-video", async (req, res) => {
     try {
         await convertVideo(inputFileName, outputFileName);
     } catch (err) {
-        Promise.all([
+        await Promise.all([
             deleteRawVideo(inputFileName),
             deleteProcessedVideo(outputFileName)
         ]);
@@ -39,7 +39,7 @@ app.post("/process-video", async (req, res) => {
 
     await uploadProcessedVideo(outputFileName);
 
-    Promise.all([
+    await Promise.all([
         deleteRawVideo(inputFileName),
         deleteProcessedVideo(outputFileName)
     ]);
