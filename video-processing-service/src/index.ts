@@ -1,6 +1,8 @@
 import express from "express";
 import Ffmpeg from "fluent-ffmpeg";
-import { convertVideo, deleteProcessedVideo, deleteRawVideo, downloadRawVideo, uploadProcessedVideo } from "./storage";
+import { convertVideo, deleteProcessedVideo, deleteRawVideo, downloadRawVideo, setupDirectories, uploadProcessedVideo } from "./storage";
+
+setupDirectories();
 
 const app = express();
 app.use(express.json());
